@@ -36,6 +36,7 @@ const CreatePost = () => {
         Title
       </label>
       <input
+        className="pl-1"
         type="text"
         name="title"
         value={post.title}
@@ -44,7 +45,8 @@ const CreatePost = () => {
       <label className="text-white" htmlFor="new-todo">
         Description
       </label>
-      <input
+      <textarea
+        className="pl-1 pt-2 h-32 max-h-52"
         type="text"
         name="description"
         value={post.body}
