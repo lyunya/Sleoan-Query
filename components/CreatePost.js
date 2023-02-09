@@ -12,17 +12,16 @@ const CreatePost = () => {
     body: "",
   });
   const {
-    data,
     isLoading,
-    mutate: handleAddPost,
-  } = useMutation({ mutationFn: addPost, onSuccess: () => queryClient.invalidateQueries({ queryKey: ["posts"] })});
+    mutate,
+  } = useMutation({ mutationFn: addPost, onSuccess: () => queryClient.invalidateQueries(["posts"]) });
 
 
 
 
   const handleFormSubmission = (e) => {
     e.preventDefault();
-    handleAddPost(post);
+    mutate(post)
     setPost({ userId: 1, title: "", body: "" });
   }
 

@@ -6,11 +6,9 @@ import Skeleton from "./Skeleton"
 const Posts = () => {
   const queryClient = useQueryClient();
   const { data, isLoading, isError } = useQuery({ queryKey: ["posts"], queryFn: getPosts })
-  const { mutate: handleDeletePost } = useMutation({ mutationFn: deletePost, onSuccess: () => queryClient.invalidateQueries({ queryKey: ["posts"] })})
+  const { mutate: handleDeletePost } = useMutation({ mutationFn: deletePost, onSuccess: () => queryClient.invalidateQueries(["posts"]) })
   
-  const posts = data
-    ?.filter((post) => post.userId === 1)
-    .sort((a, b) => b.id - a.id);
+  const posts = data?.filter((post) => post.userId === 1).sort((a, b) => b.id - a.id);
   
   const handleDelete = (id) => { 
     handleDeletePost(id)
